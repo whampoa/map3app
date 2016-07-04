@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+
+#map {
+    height: 500px;
+    width: 800px;
+    padding: 50px;
+}
+
+</style>
+</head>
+<body>
+
+<a class="btn btn-primary" href="home#index">Home</a>
+<h1>About</h1>
+
+<div id="map"></div>
+
+<script>
+
+var map; 
+var myinfoWindow; 
+
+function initMap() {
+  var mapcenter = {lat: -33.8631648, lng: 151.2093902};
+  var wynyardstation = {lat: -33.8656663, lng: +151.2062046};
+   map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 16,
+    center: mapcenter
+  });
+
+  var contentString = '<strong>Wynyard Station</strong><br> Daily foottraffic: 12000';
+
+  infoWindow = new google.maps.InfoWindow({
+    content: contentString
+  });
+
+  var marker = new google.maps.Marker({
+    position: wynyardstation,
+    map: map
+  });
+  marker.addListener('mouseover', function() {
+    infoWindow.open(map, marker);
+  });
+  marker.addListener('mouseout', function() {
+  	infoWindow.close();
+    });
+
+  var myPolygon; 
+  var path_definition = [
+	new google.maps.LatLng(-33.865558, +151.206833),
+    new google.maps.LatLng(-33.865925, +151.208308),
+    new google.maps.LatLng(-33.866480, +151.207473),
+    new google.maps.LatLng(-33.865558, +151.206833)];
+
+   myPolygon = new google.maps.Polygon({
+   	paths: path_definition, 
+   	strokeColor: "#FF0000",
+	strokeOpacity: 0.3,
+	strokeWeight: 1,
+	fillColor: "#FF0000",
+	fillOpacity: 0.1,
+	});
+
+   myPolygon.setMap(map);
+
+google.maps.event.addListener(myPolygon, 'mouseover', show_myInfowindow);
+
+google.maps.event.addListener(myPolygon, "mouseover", function (event) {
+        this.setOptions({
+            strokeColor: '#FF0000',
+            strokeOpacity: 1,
+            strokeWeight: 1,
+            fillColor: '#FF0000',
+            fillOpacity: 1,
+
+        });
+    });
+
+    google.maps.event.addListener(myPolygon, "mouseout", function (event) {
+        this.setOptions({
+            strokeColor: "#FF0000",
+			strokeOpacity: 0.3,
+			strokeWeight: 1,
+			fillColor: "#FF0000",
+			fillOpacity: 0.1,
+        });
+    });
+
+myInfowindow = new google.maps.InfoWindow();
+
+var polygon50bridge; 
+  var path_50bridge = [
+	new google.maps.LatLng(-33.863415, +151.211064),
+                        new google.maps.LatLng(-33.862856, +151.211121),
+                        new google.maps.LatLng(-33.862925, +151.211882),
+                        new google.maps.LatLng(-33.863351, +151.211831),
+                        new google.maps.LatLng(-33.863415, +151.211064)];
+
+   polygon50bridge = new google.maps.Polygon({
+   	paths: path_50bridge, 
+   	strokeColor: "#FF0000",
+	strokeOpacity: 0.3,
+	strokeWeight: 1,
+	fillColor: "#FF0000",
+	fillOpacity: 0.1,
+	});
+
+   polygon50bridge.setMap(map);
+
+google.maps.event.addListener(polygon50bridge, 'mouseover', Infowindow50bridge);
+
+google.maps.event.addListener(polygon50bridge, "mouseover", function (event) {
+        this.setOptions({
+            strokeColor: '#FF0000',
+            strokeOpacity: 1,
+            strokeWeight: 1,
+            fillColor: '#FF0000',
+            fillOpacity: 1,
+
+        });
+    });
+
+    google.maps.event.addListener(polygon50bridge, "mouseout", function (event) {
+        this.setOptions({
+            strokeColor: "#FF0000",
+			strokeOpacity: 0.3,
+			strokeWeight: 1,
+			fillColor: "#FF0000",
+			fillOpacity: 0.1,
+        });
+    });
+
+Infowindow50bridge = new google.maps.InfoWindow();
+}
+
+function show_myInfowindow(event) {
+
+var vertices = this.getPath();
+var contentStringpolygon = "<b>My Polygon</b>";
+
+for (var i =0; i < vertices.length; i++) {
+var xy = vertices.getAt(i);
+}
+
+myInfowindow.setContent(contentStringpolygon);
+myInfowindow.setPosition(event.latLng);
+myInfowindow.open(map);
+
+}
+
+function show_Infowindow50bridge(event) {
+
+var vertices = this.getPath();
+var contentstring50bridgepolygon = "<b>50Bridge</b>";
+
+for (var i =0; i < vertices.length; i++) {
+var xy = vertices.getAt(i);
+}
+
+Infowindow50bridge.setContent(contentstring50bridgepolygon);
+Infowindow50bridge.setPosition(event.latLng);
+Infowindow50bridge.open(map);
+ 
+}
+
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVSwdcJ6_td1z07JXSASQusdP7uQK9pNI&callback=initMap"
+    async defer>
+</script>
+
+</body>
+</html>

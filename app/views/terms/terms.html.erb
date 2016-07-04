@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Simple markers</title>
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 400px;
+        width: 800px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+
+function initMap() {
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 16,
+    center: {lat: -33.8631648, lng: 151.2093902}
+  });
+
+  setMarkers(map);
+
+}
+
+
+// Data for the markers consisting of a name, a LatLng and a zIndex for the
+// order in which these markers should display on top of each other.
+var beaches = [
+  ['Mecca Cafe', -33.8695074, 151.2055877],
+  ['1 Bligh Street', -33.864728, 151.211023]
+];
+
+var stations = [
+    ['Wynyard Station', -33.8656663, 151.2062046]
+]
+
+function setMarkers(map) {
+  // Adds markers to the map.
+
+  // Marker sizes are expressed as a Size of X,Y where the origin of the image
+  // (0,0) is located in the top left of the image.
+
+  // Origins, anchor positions and coordinates of the marker increase in the X
+  // direction to the right and in the Y direction down.
+  var image1 = {
+    url: 'https://tfl.gov.uk/cdn/static/cms/images/logos/tube-partner.png',
+    // This marker is 20 pixels wide by 32 pixels high.
+    size: new google.maps.Size(80, 80),
+    // The origin for this image is (0, 0).
+    origin: new google.maps.Point(0, 0),
+    // The anchor for this image is the base of the flagpole at (0, 32).
+    anchor: new google.maps.Point(0, 32)
+  };
+
+  var image2 = {
+    url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/BJS_Line_2_icon.svg/220px-BJS_Line_2_icon.svg.png',
+    size: new google.maps.Size(250, 250),
+    origin: new google.maps.Point(0, 0),
+    anchor: new google.maps.Point(0, 32)
+
+  };
+  // Shapes define the clickable region of the icon. The type defines an HTML
+  // <area> element 'poly' which traces out a polygon as a series of X,Y points.
+  // The final coordinate closes the poly by connecting to the first coordinate.
+  var shape = {
+    coords: [1, 1, 1, 20, 18, 20, 18, 1],
+    type: 'poly'
+  };
+
+  for (var i = 0; i < beaches.length; i++) {
+    var beach = beaches[i];
+    var marker = new google.maps.Marker({
+      position: {lat: beach[1], lng: beach[2]},
+      map: map,
+      icon: image1,
+      shape: shape,
+    });
+  }
+  
+  for (var i = 0; i < stations.length; i++) {
+    var station = stations[i];
+    var marker = new google.maps.Marker({
+      position: {lat: station[1], lng: station[2]},
+      map: map,
+      icon: image2,
+      shape: shape,
+    });
+  }
+
+}
+
+
+
+
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVSwdcJ6_td1z07JXSASQusdP7uQK9pNI&libraries=places&callback=initMap">
+    </script>
+  </body>
+</html>

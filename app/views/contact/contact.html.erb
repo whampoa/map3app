@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8' />
+    <title></title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.18.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.18.0/mapbox-gl.css' rel='stylesheet' />
+
+    <link rel="stylesheet" type="text/css" href="main.css">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">  <img src="http://www.visitourchina.com/FileUpload/FileUpload/110616153133718.jpg" class="img-circle" alt="Cinque Terre" width="50" height="25">
+
+      </a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <!<li class="active"><!<a href="#"><!Link <span class="sr-only"><!(current)<!</span><!</a><!</li>
+        <li><a href="welcome#index">Shangri-La Data</a></li>
+        <li><a href="about#about">About</a></li>
+        <li><a href="contact#contact">Contact</a></li>
+        <!<li class="dropdown">
+          <!<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><!Dropdown <span class="caret"><!</span></a>
+          <ul class="dropdown-menu">
+            <li><!<a href="#"><!Action</a></li>
+            <li><!<a href="#"><!Another action</a></li>
+            <li><!<a href="#"><!Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><!<a href="#"><!Separated link</a></li>
+            <li role="separator" class="divider"></li>
+            <li><!<a href="#"><!One more separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <!<input type="text" class="form-control" placeholder="Search">
+        </div>
+        <!<button type="submit" class="btn btn-default"><!Submit</button>
+      </form>
+      <!<ul class="nav navbar-nav navbar-right">
+        <!<li><!<a href="#"><!Link</a><!</li>
+        <!--<li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>-->
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+</head>
+<body>
+<div1>
+<div id="section">
+<h1>Beautiful business data.</h1>
+</div>
+</div1>
+
+<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+<div id="results"></div>
+
+    <input id="pac-input" class="controls" type="text"
+    placeholder="Your business address...">
+
+<div id="map"></div>
+
+<script>
+
+function initialize() {
+    var myLatLng = new google.maps.LatLng(-33.8631648, 151.2093902);
+
+    var mapOptions = {
+        zoom: 16,
+        center: myLatLng,
+        styles: [
+    {
+        "featureType": "landscape",
+        "stylers": [
+            {
+                "hue": "#FFBB00"
+            },
+            {
+                "saturation": 43.400000000000006
+            },
+            {
+                "lightness": 37.599999999999994
+            },
+            {
+                "gamma": 1
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "stylers": [
+            {
+                "hue": "#FFC200"
+            },
+            {
+                "saturation": -61.8
+            },
+            {
+                "lightness": 45.599999999999994
+            },
+            {
+                "gamma": 1
+            }
+        ]
+    },
+    {
+        "featureType": "road.arterial",
+        "stylers": [
+            {
+                "hue": "#FF0300"
+            },
+            {
+                "saturation": -100
+            },
+            {
+                "lightness": 51.19999999999999
+            },
+            {
+                "gamma": 1
+            }
+        ]
+    },
+    {
+        "featureType": "road.local",
+        "stylers": [
+            {
+                "hue": "#FF0300"
+            },
+            {
+                "saturation": -100
+            },
+            {
+                "lightness": 52
+            },
+            {
+                "gamma": 1
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "stylers": [
+            {
+                "hue": "#0078FF"
+            },
+            {
+                "saturation": -13.200000000000003
+            },
+            {
+                "lightness": 2.4000000000000057
+            },
+            {
+                "gamma": 1
+            }
+        ]
+    },
+    {
+        "featureType": "poi",
+        "stylers": [
+            {
+                "hue": "#00FF6A"
+            },
+            {
+                "saturation": -1.0989010989011234
+            },
+            {
+                "lightness": 11.200000000000017
+            },
+            {
+                "gamma": 1
+            }
+        ]
+    }
+]
+    };
+
+    var polygon50bridge = [
+    new google.maps.LatLng(-33.863415, +151.211064),
+    new google.maps.LatLng(-33.862856, +151.211121),
+    new google.maps.LatLng(-33.862925, +151.211882),
+    new google.maps.LatLng(-33.863351, +151.211831),
+    new google.maps.LatLng(-33.863415, +151.211064)];
+
+    var polygonAlfredStreet = [
+    new google.maps.LatLng(-33.861346, +151.208355),
+    new google.maps.LatLng(-33.861611, +151.208181),
+    new google.maps.LatLng(-33.861883, +151.208001),
+    new google.maps.LatLng(-33.862161, +151.208715),
+    new google.maps.LatLng(-33.8614, +151.208833),
+    new google.maps.LatLng(-33.861346, +151.208355)];
+
+    var polygonWentworthAve = [
+    new google.maps.LatLng(-33.878759, +151.209777),
+    new google.maps.LatLng(-33.878697, +151.209863),
+    new google.maps.LatLng(-33.878986, +151.210166),
+    new google.maps.LatLng(-33.879107, +151.209997),
+    new google.maps.LatLng(-33.878817, +151.209691),
+    new google.maps.LatLng(-33.878759, +151.209777)];
+
+    var polygonOriginal = [
+    new google.maps.LatLng(-33.873041, +151.207069),
+    new google.maps.LatLng(-33.873186, +151.208090),
+    new google.maps.LatLng(-33.874415, +151.207962),
+    new google.maps.LatLng(-33.874335, +151.206910)];
+
+    var polygonClarenceStreet = [
+    new google.maps.LatLng(-33.872021, +151.205665),
+    new google.maps.LatLng(-33.871929, +151.205657),
+    new google.maps.LatLng(-33.871918, +151.205992),
+    new google.maps.LatLng(-33.872012, +151.205995),
+    new google.maps.LatLng(-33.872021, +151.205665)];
+
+    var polygonMartinPlaceStation = [
+    new google.maps.LatLng(-33.867569, +151.211284),
+    new google.maps.LatLng(-33.867509, +151.211295),
+    new google.maps.LatLng(-33.867397, +151.211314),
+    new google.maps.LatLng(-33.867471, +151.212298),
+    new google.maps.LatLng(-33.867783, +151.212252),
+    new google.maps.LatLng(-33.867754, +151.211845),
+    new google.maps.LatLng(-33.867718, +151.211437),
+    new google.maps.LatLng(-33.867707, +151.21126),
+    new google.maps.LatLng(-33.867629, +151.211276),
+    new google.maps.LatLng(-33.867569, +151.211284)];
+
+    var polygonKingStreet = [
+    new google.maps.LatLng(-33.86911, +151.211048),
+    new google.maps.LatLng(-33.869061, +151.211055),
+    new google.maps.LatLng(-33.868961, +151.211062),
+    new google.maps.LatLng(-33.868932, +151.210804),
+    new google.maps.LatLng(-33.869199, +151.210775),
+    new google.maps.LatLng(-33.869221, +151.210954),
+    new google.maps.LatLng(-33.86921, +151.210992),
+    new google.maps.LatLng(-33.869197, +151.211024),
+    new google.maps.LatLng(-33.869159, +151.211037),
+    new google.maps.LatLng(-33.86911, +151.211048)];
+
+    var polygonYoungStreet = [
+    new google.maps.LatLng(-33.862455, +151.211086),
+    new google.maps.LatLng(-33.862464, +151.211107),
+    new google.maps.LatLng(-33.862531, +151.211104),
+    new google.maps.LatLng(-33.862611, +151.211094),
+    new google.maps.LatLng(-33.86278, +151.211075),
+    new google.maps.LatLng(-33.862945, +151.211062),
+    new google.maps.LatLng(-33.863108, +151.211043),
+    new google.maps.LatLng(-33.863088, +151.21078),
+    new google.maps.LatLng(-33.862758, +151.21082),
+    new google.maps.LatLng(-33.862429, +151.21086),
+    new google.maps.LatLng(-33.862455, +151.211086)];
+
+    var polygonElizabethStreet = [
+    new google.maps.LatLng(-33.87572, +151.209624),
+    new google.maps.LatLng(-33.875488, +151.209653),
+    new google.maps.LatLng(-33.875412, +151.208961),
+    new google.maps.LatLng(-33.875873, +151.208908),
+    new google.maps.LatLng(-33.875951, +151.209592),
+    new google.maps.LatLng(-33.87572, +151.209624)];
+                    
+    map = new google.maps.Map($('#map')[0], mapOptions);
+    //create a single info window for use in the application
+    infoWindow = new google.maps.InfoWindow();
+
+    //add the polygon and infowindow content to the map.
+    createPolygon(polygon50bridge, '<strong>50 Bridge Street<br></strong>Stage 1 development application for the mixed use redevelopment of the Bridge and Alfred Streets block and Young and Loftus Streets block known as AMP Circular Quay Sydney or Quay Quarter Sydney. <a href="http://www.ampcentre.com.au/Core/Content/Public-Home-Page/Content3907.aspx" target="_blank">More</a>');
+    createPolygon(polygonAlfredStreet, '<strong>Alfred Street<br></strong>Alfred Street Development.');
+    createPolygon(polygonWentworthAve, '<strong>Wentworth Avenue<br></strong>Wentworth Avenue Development.');
+    createPolygon(polygonOriginal, 'Polygon original.');
+    createPolygon(polygonClarenceStreet, 'Clarence street polygon.');
+    createPolygon(polygonMartinPlaceStation, 'Martin Place Station polygon.');
+    createPolygon(polygonKingStreet, 'King Street polygon.');
+    createPolygon(polygonYoungStreet, 'Young Street polygon.');
+    createPolygon(polygonElizabethStreet, 'Elizabeth Street polygon.');
+
+}
+
+var map;
+var infoWindow;
+var clickablePolygons = [];
+var marker; 
+
+function createPolygon(path, polygoncontent) {
+    var poly = new google.maps.Polygon({
+        paths: path,
+        strokeColor: '#000000',
+        strokeOpacity: 1,
+        strokeWeight: 0.5,
+        fillColor: '#0000FF',
+        fillOpacity: 0.2
+    });
+
+    //Listener for when mouse hovers over the polygon
+
+    google.maps.event.addListener(poly, "mouseover", function (event) {
+        this.setOptions({
+            strokeColor: '#ffffff',
+            fillColor: '#ff6666'
+        });
+    });
+
+    google.maps.event.addListener(poly, "mouseout", function (event) {
+        this.setOptions({
+            strokeColor: '#000000',
+            fillColor: '#0000FF'
+        });
+    });
+
+    //add the polygon to the array, to use later if needed.
+    clickablePolygons.push(poly);
+
+    //attach a click event, the first argument of the listener is the event
+    //you can get the position of the mouse cursor where the map was clicked through this.
+    google.maps.event.addListener(poly, "click", function (event) {
+
+        //call the setContent method and set the content for the info window
+        infoWindow.setContent(polygoncontent);
+        //set the anchor of the info window, in this case I am using the mouse position at
+        //the time of the click
+        infoWindow.setPosition(event.latLng);
+        //open the info window, passing the map in which to attach it to.
+        infoWindow.open(map);
+    });
+
+//    google.maps.event.addListener(poly, "mouseout", function() {
+//        infoWindow.close();
+//    });
+
+    //add the polygon to the map
+    poly.setMap(map);
+
+//polylines - 
+
+var foottrafficcoordinates = [
+    {lat: -33.866766, lng: 151.204353},
+    {lat: -33.867221, lng: 151.204393}
+  ];
+  var foottraffic = new google.maps.Polyline({
+    path: foottrafficcoordinates,
+    geodesic: true,
+    strokeColor: '#0000FF',
+    strokeOpacity: 0.05,
+    strokeWeight: 5
+  });
+  var foottrafficcontent = '<strong>Foot traffic</strong><br>1330-1430: 4000<br>1530-1630: 2000<br>1730-1830: 1000'
+
+  var foottrafficinfowindow = new google.maps.InfoWindow({
+    content: foottrafficcontent, 
+    positi: foottrafficcoordinates
+  });
+  
+    foottraffic.addListener('mouseover', function() {
+    foottrafficinfowindow.open(map, foottraffic);
+    });
+
+    foottraffic.addListener('mouseout', function() {
+    foottrafficinfowindow.close();
+    });
+
+  foottraffic.setMap(map);
+
+// Markers with infowindows:--------------------
+
+// Marker content: 
+
+var markercontentwynyardstation = '<strong>Wynyard Station</strong><br> Daily foottraffic: 120,400';
+var markercontentmeccacafe = '<strong>meccacafe</strong>';
+var markercontenttownhallstation = '<strong>Town Hall Station</strong><br> Daily foottraffic: 179,240';
+var markercontentcentralstation = '<strong>Central Station</strong><br> Daily foottraffic: 194,200';
+var markercontentmartinplacestation = '<strong>Martin Place Station</strong><br> Daily foottraffic: 41,260';
+var markercontentstjamesstation = '<strong>St James Station</strong><br> Daily foottraffic: 19,700';
+var markercontentmuseumstation = '<strong>Museum Station</strong><br> Daily foottraffic: 21,720';
+var markercontentcircularquaystation = '<strong>Circular Quay Station</strong><br> Daily foottraffic: 41,260';
+
+// Marker locations:
+
+var wynyardstation = {lat: -33.8656663, lng: +151.2062046};
+var meccacafe = {lat:-33.8695074, lng: +151.2055877};
+var townhallstation = {lat: -33.873687, lng: +151.2069476};
+var centralstation = {lat: -33.8826438, lng: +151.2065687};
+var martinplacestation = {lat: -33.8679669, lng: +151.211438};
+var stjamesstation = {lat: -33.8701483, lng: +151.2117863};
+var museumstation = {lat: -33.8766332, lng: +151.2098148};
+var circularquaystation = {lat: -33.8612813, lng: +151.2108438};
+
+
+//Marker infowindows: 
+
+var markerinfowindowwynyardstation = new google.maps.InfoWindow({
+    content: markercontentwynyardstation
+  });
+var markerinfowindowmeccacafe = new google.maps.InfoWindow({
+    content: markercontentmeccacafe
+  });
+var markerinfowindowtownhallstation = new google.maps.InfoWindow({
+    content: markercontenttownhallstation
+});
+var markerinfowindowcentralstation = new google.maps.InfoWindow({
+    content: markercontentcentralstation
+});
+var markerinfowindowmartinplacestation = new google.maps.InfoWindow({
+    content: markercontentmartinplacestation
+});
+var markerinfowindowstjamesstation = new google.maps.InfoWindow({
+    content: markercontentstjamesstation
+});
+var markerinfowindowmuseumstation = new google.maps.InfoWindow({
+    content: markercontentmuseumstation
+});
+var markerinfowindowcircularquaystation = new google.maps.InfoWindow({
+    content: markercontentcircularquaystation
+});
+
+//Marker images (if applicable - station):
+
+var image1 = {
+    url: 'http://wikitravel.org/upload/en/f/ff/Train.png',
+//     This marker is 20 pixels wide by 32 pixels high.
+    size: new google.maps.Size(100, 100),
+//     The origin for this image is (0, 0).
+    origin: new google.maps.Point(0, 0),
+//     The anchor for this image is the base of the flagpole at (0, 32).
+    anchor: new google.maps.Point(0, 32)
+  };
+
+// Actual markers: 
+
+var marker1 = new google.maps.Marker({
+    position: wynyardstation,
+//  icon: image1,  
+    map: map
+  });
+var marker2 = new google.maps.Marker({
+    position: meccacafe,
+    map: map
+  });
+var marker3 = new google.maps.Marker({
+    position: townhallstation, 
+//  icon: image1, 
+    map: map    
+});
+var marker4 = new google.maps.Marker({
+    position: centralstation, 
+//  icon: image1, 
+    map: map    
+});
+var marker5 = new google.maps.Marker({
+    position: martinplacestation, 
+//  icon: image1, 
+    map: map    
+});
+var marker6 = new google.maps.Marker({
+    position: stjamesstation, 
+//  icon: image1, 
+    map: map    
+});
+var marker7 = new google.maps.Marker({
+    position: museumstation, 
+//  icon: image1, 
+    map: map    
+});
+var marker8 = new google.maps.Marker({
+    position: circularquaystation, 
+//  icon: image1, 
+    map: map    
+});
+
+// Marker interactivity with infowindows: (note: there has to be a way to join these --> potentially use the Googlemaps 'beaches' method?)
+
+marker1.addListener('mouseover', function() {
+    markerinfowindowwynyardstation.open(map, marker1);
+  });
+marker2.addListener('mouseover', function() {
+    markerinfowindowmeccacafe.open(map, marker2);
+  });
+marker3.addListener('mouseover', function() {
+    markerinfowindowtownhallstation.open(map, marker3);
+});
+marker4.addListener('mouseover', function() {
+    markerinfowindowcentralstation.open(map, marker4);
+});
+marker5.addListener('mouseover', function() {
+    markerinfowindowmartinplacestation.open(map, marker5);
+});
+marker6.addListener('mouseover', function() {
+    markerinfowindowstjamesstation.open(map, marker6);
+});
+marker7.addListener('mouseover', function() {
+    markerinfowindowmuseumstation.open(map, marker7);
+});
+marker8.addListener('mouseover', function() {
+    markerinfowindowcircularquaystation.open(map, marker8);
+});
+
+marker1.addListener('mouseout', function() {
+    markerinfowindowwynyardstation.close();
+    });
+marker2.addListener('mouseout', function() {
+    markerinfowindowmeccacafe.close();
+    });
+marker3.addListener('mouseout', function() {
+    markerinfowindowtownhallstation.close(); 
+});
+marker4.addListener('mouseout', function() {
+    markerinfowindowcentralstation.close(); 
+});
+marker5.addListener('mouseout', function() {
+    markerinfowindowmartinplacestation.close();
+});
+marker6.addListener('mouseout', function() {
+    markerinfowindowstjamesstation.close();
+});
+marker7.addListener('mouseout', function() {
+    markerinfowindowmuseumstation.close();
+});
+marker8.addListener('mouseout', function() {
+    markerinfowindowcircularquaystation.close();
+});
+
+
+var citymap = {
+                    Wynyard: {
+                      center: {lat: -33.8656663, lng: +151.2062046},
+                      population: 120400
+                    },
+                    Townhall: {
+                      center: {lat: -33.873687, lng: +151.2069476},
+                      population: 179240
+                    },
+                    StJames: {
+                      center: {lat: -33.8701483, lng: +151.2117863},
+                      population: 19700
+                    },
+                    Museum: {
+                      center: {lat: -33.8766332, lng: +151.2098148},
+                      population: 21720
+                    },
+                    MartinPlace: {
+                      center: {lat: -33.8679669, lng: +151.211438},
+                      population: 41260
+                    },
+                    CircularQuay: {
+                      center: {lat: -33.8612813, lng: +151.2108438},
+                      population: 41260
+                    },
+                    Central: {
+                      center: {lat: -33.8826438, lng: +151.2065687},
+                      population: 194200
+                    },
+                  };
+
+for (var city in citymap) {
+          // Add the circle for this city to the map.
+          var cityCircle = new google.maps.Circle({
+            strokeColor: '#ff6666',
+            strokeOpacity: 0.05,
+            strokeWeight: 0.5,
+            fillColor: '#FF0000',
+            fillOpacity: 0,
+            map: map,
+            center: citymap[city].center,
+            radius: Math.sqrt(citymap[city].population) * 0.4
+          });
+        }
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+</script>
+
+<footer class="container">
+    <div class="row">
+      <p class="col-sm-4">&copy; 2016 Shangri-La Data</p>
+      <p class="col-sm-4">
+        <button type="button" class="btn btn-link">Terms and conditions</button></p>
+        <p class="col-sm-4">
+      <button type="button" class="btn btn-link">Contact</button>
+      </p>
+    </div>
+  </footer>
+</body>
+</html>
+

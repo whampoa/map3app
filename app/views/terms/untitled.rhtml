@@ -1,0 +1,490 @@
+// Infowindow on polygon
+// polygonWentworthAve 
+
+function attachPolygonInfoWindow(polygon, html){
+
+    polygon.infoWindow = new google.maps.InfoWindow({
+        content: html,
+    });
+    google.maps.event.addListener(polygonWentworthAve, 'mouseover', function(e) {
+        var latLng = e.latLng;
+        polygon.infoWindow.setPosition(latLng);
+        polygon.infoWindow.open(map);
+    });
+    google.maps.event.addListener(polygonWentworthAve, 'mouseout', function() {
+        polygon.infoWindow.close();
+    });
+}
+
+var polygon = new google.maps.Polygon(polygonWentworthAve);
+attachPolygonInfoWindow(polygon, '<strong>Wentworth Avenue<br></strong>Wentworth Avenue Development.');
+
+
+
+
+-
+
+
+google.maps.event.addListener(polygon50bridge, 'mouseover', function(e) {
+        var latLng = e.latLng;
+        polygon.infoWindow.setPosition(latLng);
+        polygon.infoWindow.open(map);
+    });
+    google.maps.event.addListener(polygon50bridge, 'mouseout', function() {
+        polygon.infoWindow.close();
+    });
+-
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<div id="map-canvas"></div>
+
+
+<script>
+
+var map;
+var infoWindow;
+
+function initialize() {
+    var mapOptions = {
+
+    center: {lat: -33.8631648, lng: 151.2093902},
+          zoom: 16,
+          styles: [
+    {
+        "featureType": "all",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "saturation": 36
+            },
+            {
+                "color": "#000000"
+            },
+            {
+                "lightness": 40
+            }
+        ]
+    },
+    {
+        "featureType": "all",
+        "elementType": "labels.text.stroke",
+        "stylers": [
+            {
+                "visibility": "on"
+            },
+            {
+                "color": "#000000"
+            },
+            {
+                "lightness": 16
+            }
+        ]
+    },
+    {
+        "featureType": "all",
+        "elementType": "labels.icon",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "weight": "1.39"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            {
+                "color": "#202535"
+            },
+            {
+                "lightness": 17
+            },
+            {
+                "weight": 1.2
+            }
+        ]
+    },
+    {
+        "featureType": "administrative",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "lightness": "20"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative",
+        "elementType": "labels.text.stroke",
+        "stylers": [
+            {
+                "weight": "0.73"
+            },
+            {
+                "color": "#89a6c4"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative.country",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#32374a"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative.province",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#202535"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative.locality",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#20232d"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative.neighborhood",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#202535"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative.land_parcel",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#2c303d"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#000000"
+            },
+            {
+                "lightness": 20
+            }
+        ]
+    },
+    {
+        "featureType": "landscape.man_made",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#202127"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape.man_made",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            {
+                "color": "#31384f"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape.man_made",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "lightness": "-35"
+            },
+            {
+                "color": "#22293f"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape.natural.landcover",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "saturation": "2"
+            },
+            {
+                "lightness": "-7"
+            },
+            {
+                "gamma": "0.68"
+            },
+            {
+                "color": "#333333"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape.natural.landcover",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            {
+                "lightness": "-70"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape.natural.landcover",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "visibility": "on"
+            }
+        ]
+    },
+    {"featureType": "landscape.natural.terrain",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {"lightness": "-40"
+            },
+            {"color": "#393b3c"
+            }]},
+    { "featureType": "poi",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "saturation": "-65"
+            },
+            {
+                "lightness": "-71"
+            }
+        ]
+    },
+    {"featureType": "poi",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            {
+                "lightness": "-82"
+            }
+        ]
+    },
+    {"featureType": "road.highway",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#202535"
+            },
+            {
+                "lightness": 17
+            }
+        ]
+    },
+    {"featureType": "road.highway",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            {
+                "color": "#202535"
+            },
+            {
+                "lightness": 29
+            },
+            {
+                "weight": 0.2
+            }
+        ]
+    },
+    {
+        "featureType": "road.arterial",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#202535"
+            },
+            {
+                "lightness": 18
+            }
+        ]
+    },
+    {
+        "featureType": "road.local",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#202535"
+            },
+            {
+                "lightness": 16
+            }
+        ]
+    },
+    {
+        "featureType": "transit",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#000000"
+            },
+            {
+                "lightness": 19
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#ffffff"
+            },
+            {
+                "lightness": 17
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "gamma": "3.16"
+            },
+            {
+                "visibility": "on"
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "color": "#b49fba"
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "labels.text.stroke",
+        "stylers": [
+            {
+                "visibility": "on"
+            },
+            {
+                "color": "#76a4b4"
+            }]}]};
+
+// These are declared outside of the init function, so I initialized them together at the top of the function..
+
+map = new google.maps.Map(document.getElementById('map-canvas'), 
+
+mapOptions);
+
+infoWindow = new google.maps.InfoWindow();
+
+var polygon50bridge = new google.maps.Polygon({
+                    map:map, 
+                    paths: [
+                        new google.maps.LatLng(-33.863415, +151.211064),
+                        new google.maps.LatLng(-33.862856, +151.211121),
+                        new google.maps.LatLng(-33.862925, +151.211882),
+                        new google.maps.LatLng(-33.863351, +151.211831),
+                        new google.maps.LatLng(-33.863415, +151.211064),
+                    ],
+
+                    strokeColor: '#000000',
+                    strokeOpacity: 1,
+                    strokeWeight: 0.5,
+                    fillColor: '#ff6666',
+                    fillOpacity: 0.2, 
+                    name: 'name 1',
+
+                });
+
+    // Here's the behavior handler..
+    google.maps.event.addListener(polygon50bridge, 'click', showArrays);
+
+    // This is a new, different object therefore we should instantiate it relative
+    // to a new variable (i.e. a unique pointer). Once again I moved the paths, map,
+    // and name properties inside the object declaration.
+    var otherTriangle = new google.maps.Polygon({
+        paths: [
+        new google.maps.LatLng(-33.862455, +151.211086),
+        new google.maps.LatLng(-33.862464, +151.211107),
+        new google.maps.LatLng(-33.862531, +151.211104),
+        new google.maps.LatLng(-33.862611, +151.211094),
+        new google.maps.LatLng(-33.86278, +151.211075),
+        new google.maps.LatLng(-33.862945, +151.211062),
+        new google.maps.LatLng(-33.863108, +151.211043),
+        new google.maps.LatLng(-33.863088, +151.21078),
+        new google.maps.LatLng(-33.862758, +151.21082),
+        new google.maps.LatLng(-33.862429, +151.21086),
+        new google.maps.LatLng(-33.862455, +151.211086),
+
+        ],
+        strokeColor: '#000000',
+        strokeOpacity: 1,
+        strokeWeight: 0.5,
+        fillColor: '#ff6666',
+        fillOpacity: 0.2, 
+        name: 'name 2', // dynamic, not an official API property..
+        map: map
+    });
+
+    // Aaaaand, the behavior..
+    google.maps.event.addListener(otherTriangle, 'click', showArrays);
+
+}
+
+// The only differnece here is that I changed "name" to this.name,
+// becuase "this" (the object that fired the event), now carries around that "name" property we gave it..
+function showArrays(event) {
+    var vertices = this.getPath();
+
+    var contentString = '<b>' + this.name + '</b><br>' +
+        'mouseover location: <br>' + event.latLng.lat() + ',' + event.latLng.lng() +
+        '<br>';
+
+    for (var i = 0; i < vertices.getLength(); i++) {
+        var xy = vertices.getAt(i);
+        contentString += '<br>' + 'Coordinate ' + i + ':<br>' + xy.lat() + ',' + xy.lng();
+    }
+
+    infoWindow.setContent(contentString);
+    infoWindow.setPosition(event.latLng);
+
+    infoWindow.open(map);
+}
+
+initialize();
+
+
+</script>
+<scrip>
+style: 
+
+</scrip>
+
+        <a class="btn btn-primary" href="home#index">Home</a>
+        <h1>Terms and Conditions</h1>
+</body>
+</html>
+

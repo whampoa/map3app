@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title></title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.18.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.18.0/mapbox-gl.css' rel='stylesheet' />
+
+    <link rel="stylesheet" type="text/css" href="main.css">
+  	
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">  <img src="http://www.visitourchina.com/FileUpload/FileUpload/110616153133718.jpg" class="img-circle" alt="Cinque Terre" width="50" height="25">
+
+      </a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <!<li class="active"><!<a href="#"><!Link <span class="sr-only"><!(current)<!</span><!</a><!</li>
+        <li><a href="welcome#index">Shangri-La Data</a></li>
+        <li><a href="about#about">About</a></li>
+        <li><a href="contact#contact">Contact</a></li>
+        <!<li class="dropdown">
+          <!<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><!Dropdown <span class="caret"><!</span></a>
+          <ul class="dropdown-menu">
+            <li><!<a href="#"><!Action</a></li>
+            <li><!<a href="#"><!Another action</a></li>
+            <li><!<a href="#"><!Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><!<a href="#"><!Separated link</a></li>
+            <li role="separator" class="divider"></li>
+            <li><!<a href="#"><!One more separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <!<input type="text" class="form-control" placeholder="Search">
+        </div>
+        <!<button type="submit" class="btn btn-default"><!Submit</button>
+      </form>
+      <!<ul class="nav navbar-nav navbar-right">
+        <!<li><!<a href="#"><!Link</a><!</li>
+        <!--<li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>-->
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+</head>
+<body>
+
+<div1>
+<div class="jumbotron">
+<h1>Beautiful business data.</h1>
+</div>
+</div1>
+    <!-- Dislay Google map here -->
+<div id="map-canvas" ></div>
+
+    <input id="pac-input" class="controls" type="text"
+    placeholder="Your business address...">
+
+<div id="map"></div>
+<div2>
+<div class="jumbotron">
+    <h3><button type="button" class="btn btn-default btn-lg" disabled="disabled" href="contact#contact">Download</a> your tailored report:</h3>
+</div>
+
+
+<script>
+      // This example requires the Places library. Include the libraries=places
+      // parameter when you first load the API. For example:
+      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -33.8631648, lng: 151.2093902},
+          zoom: 16
+      });
+
+//polygons for development applications
+
+var polygonWentworthAve = new google.maps.Polygon({
+                    map:map, 
+                    paths: [
+                        new google.maps.LatLng(-33.878759, +151.209777),
+                        new google.maps.LatLng(-33.878697, +151.209863),
+                        new google.maps.LatLng(-33.878986, +151.210166),
+                        new google.maps.LatLng(-33.879107, +151.209997),
+                        new google.maps.LatLng(-33.878817, +151.209691),
+                        new google.maps.LatLng(-33.878759, +151.209777),],
+
+                    strokeColor: '#000000',
+                    strokeOpacity: 1,
+                    strokeWeight: 0.5,
+                    fillColor: '#ff6666',
+                    fillOpacity: 0.2
+
+                });
+
+                var polygonOriginal = new google.maps.Polygon({
+                    map: map,
+                    paths: [
+                        new google.maps.LatLng(-33.873041, +151.207069),
+                        new google.maps.LatLng(-33.873186, +151.208090),
+                        new google.maps.LatLng(-33.874415, +151.207962),
+                        new google.maps.LatLng(-33.874335, +151.206910),
+                    ],
+
+                    strokeColor: '#000000',
+                    strokeOpacity: 1,
+                    strokeWeight: 0.5,
+                    fillColor: '#ff6666',
+                    fillOpacity: 0.2
+
+                });
+
+                var polygonClarenceStreet = new google.maps.Polygon({
+                    map:map, 
+                    paths: [
+                        new google.maps.LatLng(-33.872021, +151.205665),
+                        new google.maps.LatLng(-33.871929, +151.205657),
+                        new google.maps.LatLng(-33.871918, +151.205992),
+                        new google.maps.LatLng(-33.872012, +151.205995),
+                        new google.maps.LatLng(-33.872021, +151.205665),
+                    ],
+
+                    strokeColor: '#000000',
+                    strokeOpacity: 1,
+                    strokeWeight: 0.5,
+                    fillColor: '#ff6666',
+                    fillOpacity: 0.2
+
+                });
+
+                var polygonMartinPlaceStation = new google.maps.Polygon({
+                    map:map, 
+                    paths: [
+                        new google.maps.LatLng(-33.867569, +151.211284),
+                        new google.maps.LatLng(-33.867509, +151.211295),
+                        new google.maps.LatLng(-33.867397, +151.211314),
+                        new google.maps.LatLng(-33.867471, +151.212298),
+                        new google.maps.LatLng(-33.867783, +151.212252),
+                        new google.maps.LatLng(-33.867754, +151.211845),
+                        new google.maps.LatLng(-33.867718, +151.211437),
+                        new google.maps.LatLng(-33.867707, +151.21126),
+                        new google.maps.LatLng(-33.867629, +151.211276),
+                        new google.maps.LatLng(-33.867569, +151.211284),
+                    ],
+
+                    strokeColor: '#000000',
+                    strokeOpacity: 1,
+                    strokeWeight: 0.5,
+                    fillColor: '#ff6666',
+                    fillOpacity: 0.2
+
+                });
+
+                var polygon50bridge = new google.maps.Polygon({
+                    map:map, 
+                    paths: [
+                        new google.maps.LatLng(-33.863415, +151.211064),
+                        new google.maps.LatLng(-33.862856, +151.211121),
+                        new google.maps.LatLng(-33.862925, +151.211882),
+                        new google.maps.LatLng(-33.863351, +151.211831),
+                        new google.maps.LatLng(-33.863415, +151.211064),
+                    ],
+
+                    strokeColor: '#000000',
+                    strokeOpacity: 1,
+                    strokeWeight: 0.5,
+                    fillColor: '#ff6666',
+                    fillOpacity: 0.2, 
+
+                });
+
+                var polygonKingStreet = new google.maps.Polygon({
+                    map:map, 
+                    paths: [
+                        new google.maps.LatLng(-33.86911, +151.211048),
+                        new google.maps.LatLng(-33.869061, +151.211055),
+                        new google.maps.LatLng(-33.868961, +151.211062),
+                        new google.maps.LatLng(-33.868932, +151.210804),
+                        new google.maps.LatLng(-33.869199, +151.210775),
+                        new google.maps.LatLng(-33.869221, +151.210954),
+                        new google.maps.LatLng(-33.86921, +151.210992),
+                        new google.maps.LatLng(-33.869197, +151.211024),
+                        new google.maps.LatLng(-33.869159, +151.211037),
+                        new google.maps.LatLng(-33.86911, +151.211048),
+                    ],
+
+                    strokeColor: '#000000',
+                    strokeOpacity: 1,
+                    strokeWeight: 0.5,
+                    fillColor: '#ff6666',
+                    fillOpacity: 0.2
+
+                });
+
+                var polygonAlfredStreet = new google.maps.Polygon({
+                    map:map, 
+                    paths: [
+                        new google.maps.LatLng(-33.861346, +151.208355),
+                        new google.maps.LatLng(-33.861611, +151.208181),
+                        new google.maps.LatLng(-33.861883, +151.208001),
+                        new google.maps.LatLng(-33.862161, +151.208715),
+                        new google.maps.LatLng(-33.8614, +151.208833),
+                        new google.maps.LatLng(-33.861346, +151.208355),
+                    ],
+
+                    strokeColor: '#000000',
+                    strokeOpacity: 1,
+                    strokeWeight: 0.5,
+                    fillColor: '#ff6666',
+                    fillOpacity: 0.2
+
+                });
+
+                var polygonYoungStreet = new google.maps.Polygon({
+                    map:map, 
+                    paths: [
+                        new google.maps.LatLng(-33.862455, +151.211086),
+                        new google.maps.LatLng(-33.862464, +151.211107),
+                        new google.maps.LatLng(-33.862531, +151.211104),
+                        new google.maps.LatLng(-33.862611, +151.211094),
+                        new google.maps.LatLng(-33.86278, +151.211075),
+                        new google.maps.LatLng(-33.862945, +151.211062),
+                        new google.maps.LatLng(-33.863108, +151.211043),
+                        new google.maps.LatLng(-33.863088, +151.21078),
+                        new google.maps.LatLng(-33.862758, +151.21082),
+                        new google.maps.LatLng(-33.862429, +151.21086),
+                        new google.maps.LatLng(-33.862455, +151.211086),
+                    ],
+
+                    strokeColor: '#000000',
+                    strokeOpacity: 1,
+                    strokeWeight: 0.5,
+                    fillColor: '#ff6666',
+                    fillOpacity: 0.2
+
+                });
+
+                var polygonElizabethStreet = new google.maps.Polygon({
+                    map:map, 
+                    paths: [
+                        new google.maps.LatLng(-33.87572, +151.209624),
+                        new google.maps.LatLng(-33.875488, +151.209653),
+                        new google.maps.LatLng(-33.875412, +151.208961),
+                        new google.maps.LatLng(-33.875873, +151.208908),
+                        new google.maps.LatLng(-33.875951, +151.209592),
+                        new google.maps.LatLng(-33.87572, +151.209624),
+                    ],
+
+                    strokeColor: '#000000',
+                    strokeOpacity: 1,
+                    strokeWeight: 0.5,
+                    fillColor: '#ff6666',
+                    fillOpacity: 0.2
+
+                });
+
+// STEP 4: Listen for when the mouse hovers over the polygon.
+                google.maps.event.addListener(polygonWentworthAve, 'mouseover', function (event) {
+                    // Within the event listener, "this" refers to the polygon which
+                    // received the event.
+                    this.setOptions({
+                        strokeColor: '#ffffff',
+                        fillColor: '#ff6666'
+
+                    });
+                }); 
+
+                google.maps.event.addListener(polygonOriginal, 'mouseover', function (event) {
+                    // Within the event listener, "this" refers to the polygon which
+                    // received the event.
+                    this.setOptions({
+                        strokeColor: '#ffffff',
+                        fillColor: '#ff6666'
+                    });
+                });
+
+                google.maps.event.addListener(polygonClarenceStreet, 'mouseover', function (event) {
+                    // Within the event listener, "this" refers to the polygon which
+                    // received the event.
+                    this.setOptions({
+                        strokeColor: '#ffffff',
+                        fillColor: '#ff6666'
+                    });
+                });
+
+                google.maps.event.addListener(polygonMartinPlaceStation, 'mouseover', function (event) {
+                    // Within the event listener, "this" refers to the polygon which
+                    // received the event.
+                    this.setOptions({
+                        strokeColor: '#ffffff',
+                        fillColor: '#ff6666'
+                    });
+                });
+
+                google.maps.event.addListener(polygon50bridge, 'mouseover', function (event) {
+                    // Within the event listener, "this" refers to the polygon which
+                    // received the event.
+                    this.setOptions({
+                        strokeColor: '#ffffff',
+                        fillColor: '#ff6666'
+                    });
+                });
+
+                google.maps.event.addListener(polygonKingStreet, 'mouseover', function (event) {
+                    // Within the event listener, "this" refers to the polygon which
+                    // received the event.
+                    this.setOptions({
+                        strokeColor: '#ffffff',
+                        fillColor: '#ff6666'
+                    });
+                });
+
+                google.maps.event.addListener(polygonAlfredStreet, 'mouseover', function (event) {
+                    // Within the event listener, "this" refers to the polygon which
+                    // received the event.
+                    this.setOptions({
+                        strokeColor: '#ffffff',
+                        fillColor: '#ff6666'
+                    });
+                });
+
+                google.maps.event.addListener(polygonYoungStreet, 'mouseover', function (event) {
+                    // Within the event listener, "this" refers to the polygon which
+                    // received the event.
+                    this.setOptions({
+                        strokeColor: '#ffffff',
+                        fillColor: '#ff6666'
+                    });
+                });
+
+                google.maps.event.addListener(polygonElizabethStreet, 'mouseover', function (event) {
+                    // Within the event listener, "this" refers to the polygon which
+                    // received the event.
+                    this.setOptions({
+                        strokeColor: '#ffffff',
+                        fillColor: '#ff6666'
+                    });
+                });
+
+// STEP 5: Listen for when the mouse stops hovering over the polygon.
+                google.maps.event.addListener(polygonWentworthAve, 'mouseout', function (event) {
+                    this.setOptions({
+                        strokeColor: '#000000',
+                        fillColor: '#ff6666'
+                    });
+                });
+
+                google.maps.event.addListener(polygonOriginal, 'mouseout', function (event) {
+                    this.setOptions({
+                        strokeColor: '#000000',
+                        fillColor: '#ff6666'
+                    });
+                });
+
+                google.maps.event.addListener(polygonClarenceStreet, 'mouseout', function (event) {
+                    this.setOptions({
+                        strokeColor: '#000000',
+                        fillColor: '#ff6666'
+                    });
+                });
+
+                google.maps.event.addListener(polygonMartinPlaceStation, 'mouseout', function (event) {
+                    this.setOptions({
+                        strokeColor: '#000000',
+                        fillColor: '#ff6666'
+                    });
+                });
+
+                google.maps.event.addListener(polygon50bridge, 'mouseout', function (event) {
+                    this.setOptions({
+                        strokeColor: '#000000',
+                        fillColor: '#ff6666'
+                    });
+                });
+
+                google.maps.event.addListener(polygonKingStreet, 'mouseout', function (event) {
+                    this.setOptions({
+                        strokeColor: '#000000',
+                        fillColor: '#ff6666'
+                    });
+                });
+
+                google.maps.event.addListener(polygonAlfredStreet, 'mouseout', function (event) {
+                    this.setOptions({
+                        strokeColor: '#000000',
+                        fillColor: '#ff6666'
+                    });
+                });
+
+                google.maps.event.addListener(polygonYoungStreet, 'mouseout', function (event) {
+                    this.setOptions({
+                        strokeColor: '#000000',
+                        fillColor: '#ff6666'
+                    });
+                });
+
+                google.maps.event.addListener(polygonElizabethStreet, 'mouseout', function (event) {
+                    this.setOptions({
+                        strokeColor: '#000000',
+                        fillColor: '#ff6666'
+                    });
+                });
+
+// Infowindow on polygon
+// 50 Bridge st polygon 
+
+function attachPolygonInfoWindow(polygon, html){
+
+    polygon.infoWindow = new google.maps.InfoWindow({
+        content: html,
+    });
+    google.maps.event.addListener(polygon50bridge, 'click', function(e) {
+        var latLng = e.latLng;
+        polygon.infoWindow.setPosition(latLng);
+        polygon.infoWindow.open(map);
+    });}
+
+var polygon = new google.maps.Polygon(polygon50bridge);
+attachPolygonInfoWindow(polygon, '<strong>50 Bridge Street<br></strong>Stage 1 development application for the mixed use redevelopment of the Bridge and Alfred Streets block and Young and Loftus Streets block known as AMP Circular Quay Sydney or Quay Quarter Sydney. <a href="http://www.ampcentre.com.au/Core/Content/Public-Home-Page/Content3907.aspx" target="_blank">More</a>'
+);
+
+// Infowindow on polygon
+// polygonWentworthAve 
+
+function attachPolygonInfoWindow(polygon, html){
+
+    polygon.infoWindow = new google.maps.InfoWindow({
+        content: html,
+    });
+    google.maps.event.addListener(polygonWentworthAve, 'click', function(e) {
+        var latLng = e.latLng;
+        polygon.infoWindow.setPosition(latLng);
+        polygon.infoWindow.open(map);
+    });}
+
+var polygon = new google.maps.Polygon(polygonWentworthAve);
+attachPolygonInfoWindow(polygon, '<strong>Wentworth Avenue<br></strong>Wentworth Avenue Development.');
+
+// Multiple Markers with infowindows
+// Mecca Cafe marker
+function attachMarkerInfoWindow(marker, html)
+{
+    marker.infoWindow = new google.maps.InfoWindow({
+        content: html,
+    });
+    google.maps.event.addListener(marker, 'mouseover', function() {
+        marker.infoWindow.open(map,marker);
+    });
+    google.maps.event.addListener(marker, 'click', function () {
+        marker.infoWindow.open(map,marker);
+    });
+    google.maps.event.addListener(marker, 'mouseout', function() {
+        marker.infoWindow.close();
+    });
+}
+
+    var myLatLng3 = {lat:-33.8695074, lng: +151.2055877};
+    var marker = new google.maps.Marker({
+    position: myLatLng3,
+    map: map,
+    title: 'Mecca Cafe'
+      });
+
+attachMarkerInfoWindow(marker, '<strong>Mecca Cafe</strong>');
+
+//1 Bligh street marker
+function attachMarkerInfoWindow(marker, html)
+{
+    marker.infoWindow = new google.maps.InfoWindow({
+        content: html,
+    });
+    google.maps.event.addListener(marker, 'mouseover', function() {
+        marker.infoWindow.open(map,marker);
+    });
+    google.maps.event.addListener(marker, 'mouseout', function() {
+        marker.infoWindow.close();
+    });
+}
+
+    var myLatLng2 = {lat: -33.864728, lng: +151.211023};
+    var marker = new google.maps.Marker({
+    position: myLatLng2,
+    map: map,
+    title: '1 Bligh Street'
+      });
+
+attachMarkerInfoWindow(marker, '<strong>1 Bligh Street</strong>');
+
+//Wynyard Station Marker
+
+function attachMarkerInfoWindow(marker, html)
+{
+    marker.infoWindow = new google.maps.InfoWindow({
+        content: html,
+    });
+    google.maps.event.addListener(marker, 'mouseover', function() {
+        marker.infoWindow.open(map,marker);
+    });
+    google.maps.event.addListener(marker, 'mouseout', function() {
+        marker.infoWindow.close();
+    });
+}
+
+    var myLatLng4 = {lat: -33.8656663, lng: +151.2062046};
+    var image = {
+    url: "http://armac.com.au/wp-content/uploads/2015/07/Rail.png", // url
+    scaledSize: new google.maps.Size(20, 20), // scaled size to re-adjusts size. 
+    origin: new google.maps.Point(0,0), // origin
+    anchor: new google.maps.Point(0, 0) // anchor
+};
+    var marker = new google.maps.Marker({
+    position: myLatLng4,
+    map: map,
+      });
+
+attachMarkerInfoWindow(marker, '<strong>Wynyard Station<br> Daily foottraffic: 12000</strong>');
+
+//search result marker
+
+        var input = /** @type {!HTMLInputElement} */(
+            document.getElementById('pac-input'));
+
+        var types = document.getElementById('type-selector');
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(types);
+
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        autocomplete.bindTo('bounds', map);
+
+        var infowindow = new google.maps.InfoWindow();
+        var marker = new google.maps.Marker({
+          map: map,
+          anchorPoint: new google.maps.Point(0, -29)
+        });
+
+        autocomplete.addListener('place_changed', function() {
+          infowindow.close();
+          marker.setVisible(false);
+          var place = autocomplete.getPlace();
+          if (!place.geometry) {
+            window.alert("Autocomplete's returned place contains no geometry");
+            return;
+          }
+
+// Search results: If the place has a geometry, then present it on a map.
+          if (place.geometry.viewport) {
+            map.fitBounds(place.geometry.viewport);
+          } else {
+            map.setCenter(place.geometry.location);
+            map.setZoom(16);
+          }
+          marker.setIcon(/** @type {google.maps.Icon} */({
+            url: place.icon,
+            size: new google.maps.Size(71, 71),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(17, 34),
+            scaledSize: new google.maps.Size(35, 35)
+          }));
+          marker.setPosition(place.geometry.location);
+          marker.setVisible(false);
+
+          var address = '';
+          if (place.address_components) {
+            address = [
+              (place.address_components[0] && place.address_components[0].short_name || ''),
+              (place.address_components[1] && place.address_components[1].short_name || ''),
+              (place.address_components[2] && place.address_components[2].short_name || '')
+            ].join(' ');
+          }
+
+          infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+          infowindow.open(map, marker);
+        });
+
+// Sets a listener on a radio button to change the filter type on Places
+// Autocomplete.
+        function setupClickListener(id, types) {
+          var radioButton = document.getElementById(id);
+          radioButton.addEventListener('click', function() {
+            autocomplete.setTypes(types);
+          });
+        }
+
+        setupClickListener('changetype-all', []);
+        setupClickListener('changetype-address', ['address']);
+        setupClickListener('changetype-establishment', ['establishment']);
+        setupClickListener('changetype-geocode', ['geocode']);}
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVSwdcJ6_td1z07JXSASQusdP7uQK9pNI&libraries=places&callback=initMap"
+        async defer></script>
+
+
+<footer class="container">
+    <div class="row">
+      <p class="col-sm-4">&copy; 2016 Shangri-La Data</p>
+      <p class="col-sm-4">
+        <button type="button" class="btn btn-link">Terms and conditions</button></p>
+        <p class="col-sm-4">
+      <button type="button" class="btn btn-link">Contact</button>
+      </p>
+    </div>
+  </footer>
+</body>
+</html>
+
